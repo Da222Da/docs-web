@@ -10,7 +10,7 @@ cd ./.vitepress/dist
 git init
 git add --all
 git commit -m 'deploy'
-git push -f git@github.com:Da222Da/docs-cs.git master:gh-pages
+git push -f git@github.com:Da222Da/docs-web.git master:gh-pages
 
 cd -
 

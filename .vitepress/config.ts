@@ -34,6 +34,15 @@ export default defineConfig({
 					},
 				],
 			},
+			{
+				text: "附录A: 实践",
+				items: [
+					{
+						text: "实现一个 React.js",
+						link: "/experiments/lerna-react/",
+					},
+				],
+			},
 		],
 
 		socialLinks: [

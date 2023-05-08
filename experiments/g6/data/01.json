@@ -3,10 +3,22 @@
 		{
 			"id": "node1",
 			"class": "c0",
-			"type": "circle",
+			"type": "rect",
 			"size": 40,
 			"x": 100,
 			"y": 200,
+			"nodeStateStyles": {
+				"hover": {
+					"fillOpacity": 0.1,
+					"lineWidth": 10
+				}
+			},
+			"style": {
+				"fill": "lightblue",
+				"stroke": "#888",
+				"lineWidth": 1,
+				"radius": 7
+			},
 			"label": "起始点",
 			"labelCfg": {
 				"positions": "center",

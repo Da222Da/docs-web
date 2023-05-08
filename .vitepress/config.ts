@@ -41,6 +41,10 @@ export default defineConfig({
 						text: "实现一个 React.js",
 						link: "/experiments/lerna-react/",
 					},
+					{
+						text: "图可视化解决方案：G6",
+						link: "/experiments/g6/",
+					},
 				],
 			},
 		],

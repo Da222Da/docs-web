@@ -1,9 +1,5 @@
 # React.js
 
-::: tip
-终极目标：实现一个 react.js.
-:::
-
 ## 1. 前言：React.js 概述
 
 :::danger Target：明确目标

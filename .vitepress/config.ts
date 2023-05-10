@@ -23,34 +23,47 @@ export default defineConfig({
 				text: "话题",
 				items: [
 					{
-						text: "User Interface 用户界面",
-						// link: "/src/web-engineering.md",
+						text: "用户界面 UI",
+						items: [
+							{
+								text: "Component 组件化",
+								items: [
+									{
+										text: "React: 组件化解决方案",
+										link: "/demo/react/",
+									},
+								]
+							},
+							{
+								text: "数据可视化",
+								link: "/src/web-data-visualization.md",
+								items: [
+									{
+										text: "G6：图可视化引擎",
+										link: "/demo/antv-g6/",
+									},
+								]
+							},
+						]
 					},
 					{
-						text: "Web 工程化",
+						text: "Web 项目工程",
 						link: "/src/web-engineering.md",
 						items: [
 							{
-								text: "Web 开发规范",
+								text: "制定 Web 开发规范",
 								link: "/src/web-engineering-standard.md",
 							},
 						],
 					},
 				],
 			},
-			{
-				text: "附录A: 实践",
-				items: [
-					{
-						text: "实现一个 React.js",
-						link: "/experiments/lerna-react/",
-					},
-					{
-						text: "图可视化解决方案：G6",
-						link: "/experiments/g6/",
-					},
-				],
-			},
+			// {
+			// 	text: "附录A: 实践",
+			// 	items: [
+
+			// 	],
+			// },
 		],
 
 		socialLinks: [{ icon: "github", link: "https://github.com/Da222Da/docs-web" }],

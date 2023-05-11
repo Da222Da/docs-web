@@ -16,6 +16,7 @@
 	},
 	"dependencies": {
 		"@types/node": "^18.16.3",
+		"jest": "^29.5.0",
 		"katex": "^0.16.7"
 	},
 	"config": {

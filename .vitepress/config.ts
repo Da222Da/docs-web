@@ -54,16 +54,20 @@ export default defineConfig({
 								text: "制定 Web 开发规范",
 								link: "/src/web-engineering-standard.md",
 							},
+							{
+								text: "软件测试 Testing",
+								link: "/src/web-engineering-testing.md",
+								items: [
+									{
+										text: "Jest：JavaScript 单元测试框架",
+										link: "/demo/test-jest/"
+									}
+								]
+							},
 						],
 					},
 				],
 			},
-			// {
-			// 	text: "附录A: 实践",
-			// 	items: [
-
-			// 	],
-			// },
 		],
 
 		socialLinks: [{ icon: "github", link: "https://github.com/Da222Da/docs-web" }],

@@ -51,7 +51,7 @@ export default defineConfig({
 						link: "/src/web-engineering.md",
 						items: [
 							{
-								text: "制定 Web 开发规范",
+								text: "开发规范 Standard",
 								link: "/src/web-engineering-standard.md",
 							},
 							{
@@ -59,7 +59,7 @@ export default defineConfig({
 								link: "/src/web-engineering-testing.md",
 								items: [
 									{
-										text: "Jest：JavaScript 单元测试框架",
+										text: "Jest：JS 单元测试框架",
 										link: "/demo/test-jest/"
 									}
 								]

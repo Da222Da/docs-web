@@ -14,6 +14,10 @@ export default defineConfig({
 						text: "vitepress 官网",
 						link: "https://github.com/vuejs/vitepress",
 					},
+					{
+						text: "前端学习路线",
+						link: "https://objtube.github.io/front-end-roadmap/?ref=www.tboxn.com#/",
+					},
 				],
 			},
 		],
@@ -22,6 +26,15 @@ export default defineConfig({
 			{
 				text: "话题",
 				items: [
+					{
+						text: "JavaScript: 编程语言",
+						items: [
+							{
+								text: "TypeScript: JS 超集",
+								link: "/demo/ts/",
+							},
+						],
+					},
 					{
 						text: "用户界面 UI",
 						items: [
@@ -32,7 +45,7 @@ export default defineConfig({
 										text: "React: 组件化解决方案",
 										link: "/demo/react/",
 									},
-								]
+								],
 							},
 							{
 								text: "数据可视化",
@@ -42,9 +55,9 @@ export default defineConfig({
 										text: "G6：图可视化引擎",
 										link: "/demo/antv-g6/",
 									},
-								]
+								],
 							},
-						]
+						],
 					},
 					{
 						text: "Web 项目工程",
@@ -60,9 +73,9 @@ export default defineConfig({
 								items: [
 									{
 										text: "Jest：JS 单元测试框架",
-										link: "/demo/test-jest/"
-									}
-								]
+										link: "/demo/test-jest/",
+									},
+								],
 							},
 						],
 					},

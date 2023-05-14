@@ -39,6 +39,7 @@ TypeScript 是一种由微软开发的开源编程语言`静态语言`。它是 
 - compilerOptions
   - outDir, 设置编译文件保存目录
   - rootDir, 设置 .ts 源文件所在目录
+  -
 
 ### TS 类
 

@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "test:init": "jest --init",
-		"test:matcher": "jest ./testing/matcher.test.js"
+		"test:matcher": "jest ./testing/matcher.test.js",
+		"test:mock": "jest ./testing/mock.test.js",
+		"test:async": "jest ./testing/async.test.js"
   },
   "keywords": [],
   "author": "",

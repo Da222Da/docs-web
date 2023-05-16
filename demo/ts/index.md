@@ -28,96 +28,13 @@ TypeScript 是一种由微软开发的开源编程语言`静态语言`。它是 
 
 ## 附录 A: Tips 小贴士
 
-### CLI 脚手架
+### tsconfig.js 配置文件说明 
 
-|   指令名称   |            说明            |
-| :----------: | :------------------------: |
-| `tsc --init` | 初始化配置文件 tsconfig.js |
-
-### tsconfig.js 配置文件
-
+- 初始化配置文件 tsconfig.js `pnpm add -g typescript && tsc --init`
 - compilerOptions
-  - outDir, 设置编译文件保存目录
   - rootDir, 设置 .ts 源文件所在目录
+  - outDir, 设置编译文件保存目录
 
 ### 函数重载
 
-### TS 类
 
-#### 类 class
-
-类，是一种抽象概念，是从众多具有相同属性和方法的对象中抽象而来，能够起到一个“模具”的作用。例如，下面代码中抽象的人类？
-
-```ts
-class Person {
-	// 类上定义的属性有什么要求呢？
-	// 注意！类上定义的属性，一定得是用来描述该类本身的变量，不要写无关变量。
-	private name: string;
-	public age: number;
-	constructor(name: string, age: number) {
-		this.name = name;
-		this.age = age;
-	}
-	public sayHello(): void {
-		console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
-	}
-}
-```
-
-#### 实例对象 instance
-
-::: danger Title: 什么是实例对象？
-
-实例对象 instance 就是类的一个具体表现，是一个具体属性和方法的实体想·想·。
-
-:::
-
-实例对象 instance，是指从类中创建出的具体对象，使用 new 关键字创建对象实例时，会调用类的构造函数来进行对象的初始化。每个对象实例都有自己独立的属性和方法，可以对这些属性和方法进行读取和修改。同时，对象实例也能够继承父类的属性和方法，并可以复写父类中的方法。下面是一个 TypeScript 对象实例的示例：
-
-```ts
-class Person {
-	private name: string;
-	public age: number;
-	constructor(name: string, age: number) {
-		this.name = name;
-		this.age = age;
-	}
-	public sayHello(): void {
-		console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
-	}
-}
-class Student extends Person {
-	private grade: string;
-	constructor(name: string, age: number, grade: string) {
-		super(name, age);
-		this.grade = grade;
-	}
-	public sayHello(): void {
-		console.log(`Hello, my name is ${this.name}, I am ${this.age} years old, and I am in grade ${this.grade}.`);
-	}
-}
-let person = new Person("Alice", 30);
-let student = new Student("Bob", 20, "A");
-person.sayHello(); // 输出：Hello, my name is Alice and I am 30 years old.
-student.sayHello(); // 输出：Hello, my name is Bob, I am 20 years old, and I am in grade A.
-```
-
-#### 构造器 constructor
-
-在 TypeScript 中，构造器是用来创建和初始化类的对象实例的特殊方法，它是在 `new` 关键字调用类时自动执行的。构造器方法的名称必须为 `constructor` ，它可以接受多个参数，并可以进行一些初始化操作。构造器方法可以使用访问修饰符来控制属性的访问权限，例如 `private` 、 `public` 和 `protected` 。构造器方法不需要显式地返回任何值，它会自动返回实例对象本身。下面是一个 TypeScript 构造器的示例：
-
-```ts
-class Person {
-	private name: string;
-	public age: number;
-	constructor(name: string, age: number) {
-		this.name = name;
-		this.age = age;
-	}
-	public sayHello(): void {
-		console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
-	}
-}
-let person = new Person("Alice", 30);
-person.sayHello(); // 输出：Hello, my name is Alice and I am 30 years old.
-```

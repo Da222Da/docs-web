@@ -15,8 +15,12 @@ export default defineConfig({
 						link: "https://github.com/vuejs/vitepress",
 					},
 					{
-						text: "前端学习路线",
+						text: "objtube 前端学习路线总结",
 						link: "https://objtube.github.io/front-end-roadmap/?ref=www.tboxn.com#/",
+					},
+					{
+						text: "adam react2019 学习路线总结",
+						link: "https://github.com/adam-golab/react-developer-roadmap",
 					},
 				],
 			},
@@ -30,8 +34,25 @@ export default defineConfig({
 						text: "JavaScript: 编程语言",
 						items: [
 							{
-								text: "TypeScript: JS 超集",
-								link: "/demo/ts/",
+								text: "语言标准",
+								items: [
+									{
+										text: "TypeScript: JS 超集",
+										link: "/demo/ts/",
+									},
+								]
+							},
+							// {
+							// 	text: "数据结构与算法",
+							// },
+							{
+								text: "程序设计",
+								items: [
+									{
+										text: "OOP: 面向对象编程范式",
+										link: "/demo/ts-oop/",
+									},
+								]
 							},
 						],
 					},

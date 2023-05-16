@@ -9,8 +9,8 @@ type Message = {
 	content: string;
 };
 
-let message: Array<Message> = [
-	{ id: 0, type: "text", content: "你好" },
+const message: Array<Message> = [
+	{ id: 0, type: "text", content: "text 1" },
 	{ id: 1, type: "image", content: "image 1" },
 	{ id: 2, type: "image", content: "image 2" },
 	{ id: 3, type: "audio", content: "audio 1" },

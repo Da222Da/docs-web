@@ -1,7 +1,3 @@
-// 函数重载，函数签名重载（function signature overload），是指对函数签名进行细分的一种编程技术，可以提高代码的可读性和可维护性，但是，需要注意合理使用，避免引起代码错误和混乱。
-// function = 函数签名(function signature) + 函数体（function body）
-// function signature，函数签名 = 函数名称 + 函数参数 + 函数参数类型 + 函数返回值类型
-
 type MessageType = "image" | "audio" | string;
 type Message = {
 	id: number;
@@ -32,7 +28,7 @@ function getMessage(value: MessageType, count?: number): Array<Message>; // 函�
 
 // 函数签名
 // 函数签名的参数类型与返回值类型一定得包含函数重载签名的参数类型与返回值类型
-function getMessage(value: any, count?: number): any {
+function getMessage(value: any, count?: number): Message | undefined | Array<Message> {
 	if (typeof value === "number") {
 		return message.find((msg) => value === msg.id);
 	} else {
@@ -40,6 +36,4 @@ function getMessage(value: any, count?: number): any {
 	}
 }
 
-console.log(getMessage(0));
-console.log(getMessage(6));
-getMessage("audio", 2).forEach((msg) => console.log(msg));
+export default getMessage;

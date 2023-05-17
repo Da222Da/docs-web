@@ -28,13 +28,104 @@ TypeScript 是一种由微软开发的开源编程语言`静态语言`。它是 
 
 ## 附录 A: Tips 小贴士
 
-### tsconfig.js 配置文件说明 
+### A1. Config 配置
+
+---
+
+#### A1-1. tsconfig.js 配置文件说明
 
 - 初始化配置文件 tsconfig.js `pnpm add -g typescript && tsc --init`
 - compilerOptions
   - rootDir, 设置 .ts 源文件所在目录
   - outDir, 设置编译文件保存目录
 
-### 函数重载
+### A2. Usage 用法
 
+---
+
+#### A2-1. 函数重载
+
+函数重载，全称“函数签名重载（function signature overload）”，是指对函数签名进行细分的一种编程技术，可以提高代码的可读性和可维护性，但是，需要注意合理使用，避免引起代码错误和混乱。
+
+::: warning Title: 什么是函数签名 function signature?
+
+一个函数 function = 函数签名(function signature) + 函数体（function body）
+
+函数签名(function signature) = 函数名称 + 函数参数 + 函数参数类型 + 函数返回值类型
+
+:::
+
+::: code-group 
+```ts [示例1: 不使用函数签名重载]
+
+type MessageType = "image" | "audio" | string;
+type Message = {
+	id: number;
+	type: MessageType;
+	content: string;
+};
+
+const message: Array<Message> = [
+	{ id: 0, type: "text", content: "text 1" },
+	{ id: 1, type: "image", content: "image 1" },
+	{ id: 2, type: "image", content: "image 2" },
+	{ id: 3, type: "audio", content: "audio 1" },
+	{ id: 4, type: "audio", content: "audio 2" },
+	{ id: 5, type: "audio", content: "audio 3" },
+];
+
+
+// 缺点：函数结构不清晰、可读性差、可维护性差。
+function getMessage(value: number | MessageType): Message | Array<Message> | undefined {
+	if (typeof value === "number") {
+		return message.find((msg) => value === msg.id);
+	} else {
+		return message.filter((msg) => value === msg.type);
+	}
+}
+
+
+export default getMessage;
+
+
+```
+
+```ts [示例2: 使用函数签名重载]
+
+type MessageType = "image" | "audio" | string;
+type Message = {
+	id: number;
+	type: MessageType;
+	content: string;
+};
+
+const message: Array<Message> = [
+	{ id: 0, type: "text", content: "text 1" },
+	{ id: 1, type: "image", content: "image 1" },
+	{ id: 2, type: "image", content: "image 2" },
+	{ id: 3, type: "audio", content: "audio 1" },
+	{ id: 4, type: "audio", content: "audio 2" },
+	{ id: 5, type: "audio", content: "audio 3" },
+];
+
+// 函数签名重载
+function getMessage(value: number): Message | undefined; // 函数重载签名
+function getMessage(value: MessageType, count?: number): Array<Message>; // 函数重载签名
+
+// 函数签名
+// 函数签名的参数类型与返回值类型一定得包含函数重载签名的参数类型与返回值类型
+function getMessage(value: any, count?: number): Message | undefined | Array<Message> {
+	if (typeof value === "number") {
+		return message.find((msg) => value === msg.id);
+	} else {
+		return message.filter((msg) => value === msg.type).splice(0, count);
+	}
+}
+
+export default getMessage;
+
+
+```
+
+:::
 

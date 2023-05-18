@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+		"dev": "ts-node ./src/index.ts",
     "dev:node": "nodemon -w src/ -e ts --exec ts-node ./src/app.ts",
     "dev:parcel": "parcel ./index.html",
     "test:init": "jest --init",

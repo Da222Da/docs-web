@@ -28,22 +28,91 @@ TypeScript 是一种由微软开发的开源编程语言`静态语言`。它是 
 
 ## 附录 A: Tips 小贴士
 
-### A1. Config 配置
+### A1. Configuration 配置
 
 ---
 
-#### A1-1. tsconfig.js 配置文件说明
+#### 在 NodeJS 环境下，运行 ts?
 
-- 初始化配置文件 tsconfig.js `pnpm add -g typescript && tsc --init`
-- compilerOptions
-  - rootDir, 设置 .ts 源文件所在目录
-  - outDir, 设置编译文件保存目录
+要在 Node 环境下直接运行 TypeScript 文件，需要进行以下步骤：
+
+1. 全局安装 TypeScript：  `npm install -g typescript` 
+
+2. 在 TypeScript 文件中编写代码，例如：
+```js
+const message: string = "Hello, TypeScript!";
+console.log(message);
+```
+3. 使用 TypeScript 编译器将 TypeScript 文件编译成 JavaScript 文件： `tsc index.ts` 
+4. 运行编译后的 JavaScript 文件： `node index.js` 
+
+::: danger 特别说明：使用 ts-node 直接运行 TypeScript（无需编译）
+如果你想要在运行 TypeScript 文件的同时自动编译 TypeScript 代码，可以使用  `ts-node`  工具。 
+
+`ts-node`  是一个基于 Node.js 的 TypeScript 运行环境，可以直接运行 TypeScript 脚本文件，省去了手动将 TypeScript 语法转换为 JavaScript 语法，然后再运行的过程，类似于 Node.js 自带的 REPL (Read-Eval-Print Loop)，但是可以直接支持 TypeScript 语法。 
+
+具体操作步骤如下：
+1. 安装  `ts-node` ： `npm install --save-dev nodemon ts-node` 
+2. 在 package.json 中添加开发环境的配置项：
+
+      ```json
+      "scripts": {
+        "dev": "nodemon --exec ts-node src/index.ts"
+      }
+
+      ```
+3. 运行  npm run dev ，即可启动热更新模式。 
+
+   在运行  npm run dev  后， nodemon  会监听 TypeScript 文件的变化，并在文件发生变化时自动重启应用。同时， ts-node  会自动编译 TypeScript 文件，这样就可以实现 TypeScript 文件的热更新了。 
+
+需要注意的是，使用  ts-node  作为开发环境的运行工具虽然方便，但是性能较差。在生产环境中，我们通常会使用 TypeScript 编译器将 TypeScript 文件编译为 JavaScript 文件后再进行部署和运行。
+:::
+
+#### 如何使用 Jest 测试 ts 代码？
+
+使用 Jest 测试 TypeScript 代码通常需要进行以下步骤：
+
+1. 安装 Jest 和 ts-jest`npm install --save-dev jest ts-jest @types/jest`
+
+::: warning 特别说明: ts-jest 是什么？
+
+`ts-jest`  是一个 Jest 的预设 (preset)，用于在 Jest 中使用 TypeScript。使用它，你可以在 Jest 中编写 TypeScript 测试，并享受 TypeScript 的类型检查和其他功能。具体而言， `ts-jest`  提供了一个 TypeScript 编译器，用于在运行测试前将 TypeScript 代码编译成 JavaScript 代码。这样，就可以在 Jest 中运行 TypeScript 代码，并对其进行测试。
+
+:::
+
+1. 新建  `jest.config.js`  文件，配置 Jest 的 TypeScript 相关选项：
+```js
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+};
+```
+
+1. 在  `package.json`  中添加 Jest 的测试脚本：
+```json
+{
+  // ...
+  "scripts": {
+    "test": "jest"
+  }
+}
+```
+
+1. 编写测试文件，例如：
+```ts
+// math.test.ts
+import { sum } from './math';
+ test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
+});
+```
+1. 最后，运行测试 `npm test`
 
 ### A2. Usage 用法
 
 ---
 
-#### A2-1. 函数重载
+####  函数重载
 
 函数重载，全称“函数签名重载（function signature overload）”，是指对函数签名进行细分的一种编程技术，可以提高代码的可读性和可维护性，但是，需要注意合理使用，避免引起代码错误和混乱。
 
@@ -56,6 +125,7 @@ TypeScript 是一种由微软开发的开源编程语言`静态语言`。它是 
 :::
 
 ::: code-group 
+
 ```ts [示例1: 不使用函数签名重载]
 
 type MessageType = "image" | "audio" | string;
@@ -109,12 +179,13 @@ const message: Array<Message> = [
 ];
 
 // 函数签名重载
-function getMessage(value: number): Message | undefined; // 函数重载签名
-function getMessage(value: MessageType, count?: number): Array<Message>; // 函数重载签名
+function getMessage(value: number): Message | undefined; 
+function getMessage(value: MessageType, count?: number): Array<Message>; 
 
 // 函数签名
-// 函数签名的参数类型与返回值类型一定得包含函数重载签名的参数类型与返回值类型
-function getMessage(value: any, count?: number): Message | undefined | Array<Message> {
+// 函数签名的参数类型与返回值类型一定得包含函数重载签名的参数类型与返回值类型，例如 any 类型就包含了 number 类型与 messageType 类型。
+// 注意！此处之所以省略返回值类型，是因为 TS 有类型推断的能力。
+function getMessage(value: any, count?: number) {
 	if (typeof value === "number") {
 		return message.find((msg) => value === msg.id);
 	} else {
@@ -128,4 +199,5 @@ export default getMessage;
 ```
 
 :::
+
 

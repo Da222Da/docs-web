@@ -28,7 +28,7 @@ function getMessage(value: MessageType, count?: number): Array<Message>; // 函�
 
 // 函数签名
 // 函数签名的参数类型与返回值类型一定得包含函数重载签名的参数类型与返回值类型
-function getMessage(value: any, count?: number): Message | undefined | Array<Message> {
+function getMessage(value: any, count?: number) {
 	if (typeof value === "number") {
 		return message.find((msg) => value === msg.id);
 	} else {

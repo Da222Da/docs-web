@@ -52,6 +52,10 @@ export default defineConfig({
 										text: "OOP: 面向对象编程范式",
 										link: "/demo/ts-oop/",
 									},
+									{
+										text: "Design Patterns: 设计模式",
+										link: "/demo/design-patterns/",
+									},
 								]
 							},
 						],

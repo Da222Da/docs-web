@@ -29,17 +29,16 @@ React.js 是一个使用 `Components 组件` 来构建用户界面的 JavaScript
 3. 参加社区：参加 React 社区或参加线下活动可以帮助你更好地了解 React 生态系统和最佳实践；
 4. 阅读优秀的源码：阅读一些开源 React 项目的源代码，可以让你了解 React 的内部机制和最佳实践。
 
-以下是一些学习 React 的链接：
+以下是一些学习 React 的链接，希望对你有所帮助：
 
 1. [React 官方文档](https://reactjs.org/docs/getting-started.html)：React 官方文档是学习 React 的最佳资源之一。它提供了全面的指南、教程和示例，适合初学者和有经验的开发者。
-2. [React 入门教程](https://www.ruanyifeng.com/blog/2015/03/react.html)：这是一篇由阮一峰撰写的 React 入门教程。它提供了一个简单的示例，介绍了 React 的基本概念和用法。
 3. [React 学习路径](https://github.com/adam-golab/react-developer-roadmap)：这是一个 React 学习路径图，它列出了学习 React 所需的所有技能和工具。它适合那些想要深入学习 React 的开发者。
 <!-- 4. React 开发者指南： https://react.developers.cn/
 5. React 中文网： https://react-cn.github.io/react/docs/getting-started.html
 6. React 实战教程和项目： https://www.codecademy.com/catalog/language/reactjs
 7. React 源码解读： https://react.jokcy.me/ -->
 
-希望这些链接对你有所帮助。
+
 
 ## 附录A: Tips 小贴士
 
@@ -53,7 +52,7 @@ React.js 是一个使用 `Components 组件` 来构建用户界面的 JavaScript
 组件是 UI(用户界面)的一部分，它有自己的逻辑和外观。组件可以小到一个按钮，也可以大到整个页面。
 
 
-#### 标记语法 JSX 
+#### 模板语法 JSX 
 
 > JSX 可以让 markup 标记内容和 JS 逻辑写到一起。
 

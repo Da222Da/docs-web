@@ -2,7 +2,7 @@
 outline: deep
 ---
 
-# 设计模式
+# Design Patterns 设计模式
 
 ## 1. 什么是设计模式？
 
@@ -74,15 +74,16 @@ outline: deep
 
 ```ts
 // 单例设计模式的做法，注意以下两点：
-// 1. 使用类来确保实例的唯一性；
-// 2. 使用类的静态属性来存储实例，以便程序中的其他属性能够轻松地访问到。
+// 1. 不允许在类的外部创建类的实例，而是，使用类的静态属性来创建对象实例。
+// 2. 使用类的静态属性来存储实例的原因，除了确保实例的唯一性之外，也是为了在程序的其他地方能够轻松地访问到。
 class Singleton {
+  // public static instance: new Singleton();
   private static instance: Singleton;
 
-  private constructor() {
-    // private constructor to prevent outside instantiation
-  }
+  // 将构造函数设置为私有属性，防止外界实例化对象
+  private constructor() {}
 
+  // 提供静态方法 getInstance，用于创建唯一的对象实例
   public static getInstance(): Singleton {
     if (!Singleton.instance) {
       Singleton.instance = new Singleton();

@@ -31,34 +31,36 @@ export default defineConfig({
 				text: "话题",
 				items: [
 					{
-						text: "JavaScript: 编程语言",
+						text: '基础知识',
 						items: [
 							{
-								text: "语言标准",
+								text: "JavaScript: 编程语言",
 								items: [
 									{
-										text: "TypeScript: JS 超集",
-										link: "/demo/ts/",
-									},
-								]
-							},
-							// {
-							// 	text: "数据结构与算法",
-							// },
-							{
-								text: "程序设计",
-								items: [
-									{
-										text: "OOP: 面向对象编程范式",
-										link: "/demo/ts-oop/",
+										text: "语言标准",
+										items: [
+											{
+												text: "TypeScript: JS 超集",
+												link: "/demo/ts/",
+											},
+										]
 									},
 									{
-										text: "Design Patterns: 设计模式",
-										link: "/demo/design-patterns/",
+										text: "程序设计",
+										items: [
+											{
+												text: "OOP: 面向对象编程范式",
+												link: "/demo/ts-oop/",
+											},
+											{
+												text: "DP: 设计模式",
+												link: "/demo/design-patterns/",
+											},
+										]
 									},
-								]
+								],
 							},
-						],
+						]
 					},
 					{
 						text: "用户界面 UI",

@@ -28,11 +28,11 @@ TypeScript 是一种由微软开发的开源编程语言`静态语言`。它是 
 
 ## 附录 A: Tips 小贴士
 
-### A1. Configuration 配置
+### A1. 环境配置
 
 ---
 
-#### 在 NodeJS 环境下，运行 ts?
+#### NodeJS 开发环境
 
 要在 Node 环境下直接运行 TypeScript 文件，需要进行以下步骤：
 
@@ -46,7 +46,7 @@ console.log(message);
 3. 使用 TypeScript 编译器将 TypeScript 文件编译成 JavaScript 文件： `tsc index.ts` 
 4. 运行编译后的 JavaScript 文件： `node index.js` 
 
-::: danger 特别说明：使用 ts-node 直接运行 TypeScript（无需编译）
+::: danger 特别说明：使用 ts-node 直接运行 TypeScript（无需编译，很适合开发调试）
 如果你想要在运行 TypeScript 文件的同时自动编译 TypeScript 代码，可以使用  `ts-node`  工具。 
 
 `ts-node`  是一个基于 Node.js 的 TypeScript 运行环境，可以直接运行 TypeScript 脚本文件，省去了手动将 TypeScript 语法转换为 JavaScript 语法，然后再运行的过程，类似于 Node.js 自带的 REPL (Read-Eval-Print Loop)，但是可以直接支持 TypeScript 语法。 
@@ -68,7 +68,7 @@ console.log(message);
 需要注意的是，使用  ts-node  作为开发环境的运行工具虽然方便，但是性能较差。在生产环境中，我们通常会使用 TypeScript 编译器将 TypeScript 文件编译为 JavaScript 文件后再进行部署和运行。
 :::
 
-#### 如何使用 Jest 测试 ts 代码？
+#### Jest 测试环境
 
 使用 Jest 测试 TypeScript 代码通常需要进行以下步骤：
 
@@ -108,15 +108,14 @@ import { sum } from './math';
 ```
 1. 最后，运行测试 `npm test`
 
-### A2. Usage 用法
 
 ---
 
-####  函数重载
+### A2. 函数签名重载
 
-函数重载，全称“函数签名重载（function signature overload）”，是指对函数签名进行细分的一种编程技术，可以提高代码的可读性和可维护性，但是，需要注意合理使用，避免引起代码错误和混乱。
+函数签名重载（function signature overload），是一种提高代码可读性和可维护性的编程技术，具体做法就是对函数签名进行细分化处理。但是，需要注意合理使用，避免引起代码错误和混乱。
 
-::: warning Title: 什么是函数签名 function signature?
+::: warning 特别说明: 什么是函数签名 function signature?
 
 一个函数 function = 函数签名(function signature) + 函数体（function body）
 

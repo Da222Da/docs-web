@@ -26,6 +26,7 @@ function App() {
 
 	return (
 		<>
+			<a href="https://react.dev/learn" target="_blank">React 官网文档</a>
 			<div className="tab">
 				<div className="tab__header">
 					<span className={"tab__header-item " + (activeTab == 'describingTheUi' ? 'active' : '')} onClick={() => { toggle('describingTheUi'); }} >描述视图</span>

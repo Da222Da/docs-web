@@ -17,7 +17,7 @@ export default function DescribingUI() {
 	]
 	return (
 		<>
-			<h3>Hello, React!</h3>
+			<h3 style={{ color: 'red' }}>Hello, React!</h3>
 			<Image src="https://i.imgur.com/MK3eW3Am.jpg" alt="Katherine Johnson" className="photo" />
 			<ImageList datas={imageList} />
 			<TodoList />

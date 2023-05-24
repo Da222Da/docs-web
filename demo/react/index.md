@@ -35,16 +35,13 @@ React.js 是一个使用 `Components 组件` 来构建用户界面的 JavaScript
 以下是一些学习 React 的链接，希望对你有所帮助：
 
 1. [React 官方文档](https://reactjs.org/docs/getting-started.html)：React 官方文档是学习 React 的最佳资源之一。它提供了全面的指南、教程和示例，适合初学者和有经验的开发者。
-3. [React 学习路径](https://github.com/adam-golab/react-developer-roadmap)：这是一个 React 学习路径图，它列出了学习 React 所需的所有技能和工具。它适合那些想要深入学习 React 的开发者。
-<!-- 
-6. React 实战教程和项目： https://www.codecademy.com/catalog/language/reactjs
-7. React 源码解读： https://react.jokcy.me/ -->
+2. [React 学习路径](https://github.com/adam-golab/react-developer-roadmap)：这是一个 React 学习路径图，它列出了学习 React 所需的所有技能和工具。它适合那些想要深入学习 React 的开发者。
 
 
 
 ## 附录A: Tips 小贴士
 
-### 基础概念
+### 基础知识
 
 --- 
 
@@ -71,30 +68,48 @@ JSX 是 JavaScript 的语法扩展，允许您在 JavaScript 文件中编写类�
 
 需要注意的是，虽然 JSX 看起来像 HTML，但它实际上不是 HTML。它是 JavaScript 的语法扩展，允许您在 JavaScript 文件中编写类似 HTML 的代码。这意味着您可以在 JSX 代码中使用 JavaScript 表达式和变量，例如：
 
-```jsx
+::: code-group
+
+```jsx [示例1. JS 逻辑]
 const name = "JSX";
-const styleObject = { fontSize: '16px' };
+
+// JSX 模板
+const JSXTemplate = <>
+	{/* 将 JS 逻辑写在 JSX 花括号 {} 里面 */}
+	<h1>Hello, {name}!</h1>
+	<p>1 + 1 = { 1 + 1 }</p>
+</>;
+```
+
+```jsx [示例2. Style 样式]
+const styleObject = { fontSize: '16px', color: 'red' };
+
+// JSX 模板
+const JSXTemplate = <>
+	{/* 将 Style 样式写在一个对象 {} 中，再将这个对象塞到 JSX 花括号 {} 里面 */}
+	<p Style={styleObject}>JSX is a syntax extension to JavaScript</p>
+</>;
+```
+
+```jsx [示例3. 绑定事件处理器 Event Handler]
 const handleClickEvent = () => alert('You clicked me!');
 
 // JSX 模板
 const JSXTemplate = <>
-	{/* 1.将 JS 逻辑写在 JSX 花括号 {} 里面 */}
-	<h1>Hello, {name}!</h1>
-
-	{/* 2.将 Style 样式写在一个对象 {} 中，再将这个对象塞到 JSX 花括号 {} 里面 */}
-	<p Style={styleObject}>JSX is a syntax extension to JavaScript</p>
-
-	{/* 3. 绑定事件处理程序 */}
+	{/* 绑定事件处理程序 */}
 	<button onClick={handleClickEvent}>click me 1</button>
 	<button onClick={(e) => {
-			e.stopPropagation();
+			e.stopPropagation(); 
 			e.preventDefault();
 			alert('You clicked me!');
 		}
 	}> click me 2</button>
-	
 </>;
 ```
+
+:::
+
+
 
 #### 组件 Component
 
@@ -123,9 +138,10 @@ function Page() {
 }
 
 // 子组件
-// 组件通信：将 markup attribute 当做形参传给 JSX Function
+// 组件嵌套
 // 组件条件渲染: 与 JS 差不多
 // 组件列表渲染: 与 JS Array 差不多，不过需要注意 key，因为组件可能会发生变化，需要用到唯一标识。
+// 组件通信：将 markup attribute 当做形参传给 JSX Function
 function PageBody(props) {
 	const { content, listData } = props;
 	return <main>
@@ -151,24 +167,30 @@ root.render(<Page />);
 ```
 :::
 
+##### 组件渲染(条件 & 列表)
+##### 组件嵌套
+##### 组件通信
+
 #### 状态 State
 
 ::: tip 特别说明：什么是状态？
+
+状态，就是声明`动态组件 Dynamic Component`的关键。
 
 组件经常需要在交互过程中改变屏幕上的内容。例如，在表单中输入应该会更新输入字段，在图像转盘上单击“next”应该会更改显示的图像，单击“buy”应该会将产品放入购物车。组件需要“记住”一些东西:当前输入值、当前图像、购物车。在React中，这种类似于组件的内存，被称为状态。
 
 所以说，状态就是会被 React 记住的值。`State Is A Component's Memory`。核心内容：
 
-1. `useState Hook` 生命周期函数详情？
-2. 如何添加一个状态变量 `adding a state variable`？
-3. 如何更新一个状态变量`updating a state variable`？
-   1. 更新队列的规则`updating queues`？	
-   2. 原始值
-   3. object 用新对象替换旧对象
-   4. array 
+1. 如何添加一个状态变量 `adding a state variable`？
+   1. `useState Hook` 生命周期函数详情？
+2. 如何更新一个状态变量`updating a state variable`？
+   1. 原始值`示例`
+   2. object 用新对象替换旧对象`示例`
+   3. array `示例`
 :::
 
-
+##### 如何添加一个状态变量？
+##### 如何更新一个状态变量？
 
 
 

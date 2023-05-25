@@ -87,6 +87,18 @@ export default defineConfig({
 						],
 					},
 					{
+						text: "服务器 Server",
+						items: [
+							{
+								text: "NodeJS: JS 运行时环境",
+								link: "/demo/nodejs/",
+								items: [
+									{ text: "pnpm: 包管理工具", link: "/demo/pnpm/" }
+								]
+							},
+						]
+					},
+					{
 						text: "Web 项目工程",
 						link: "/src/web-engineering.md",
 						items: [

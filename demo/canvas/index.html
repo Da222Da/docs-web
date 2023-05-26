@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Canvas</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			overflow: hidden;
+		}
+
+		#canvas {
+			background-color: #2d4059;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="canvas"></canvas>
+</body>
+<script>
+	
+class Clock {
+  constructor(ctx, x, y, radius) {
+    this.ctx = ctx;
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+  }
+
+  draw() {
+    this.ctx.beginPath();
+    this.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+    this.ctx.stroke();
+  }
+
+  drawHands() {
+    // draw minute hand
+    this.ctx.moveTo(this.x, this.y);
+    this.ctx.lineTo(this.x, this.y - this.radius + 10);
+    this.ctx.stroke();
+
+    // draw hour hand
+    this.ctx.moveTo(this.x, this.y);
+    this.ctx.lineTo(this.x - this.radius + 20, this.y);
+    this.ctx.stroke();
+  }
+
+  drawNumbers() {
+    this.ctx.font = "bold 12px Arial";
+    this.ctx.textAlign = "center";
+    this.ctx.textBaseline = "middle";
+    const numberText = new Text(this.ctx, "12", this.x, this.y - this.radius + 20);
+    numberText.fill();
+  }
+}
+
+class Rectangle {
+  constructor(ctx, x, y, width, height, color) {
+    this.ctx = ctx;
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.color = color;
+  }
+
+  draw() {
+    this.ctx.fillStyle = this.color;
+    this.ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
+
+  drawOutline() {
+    this.ctx.strokeStyle = this.color;
+    this.ctx.strokeRect(this.x, this.y, this.width, this.height);
+  }
+}
+
+class Text {
+  constructor(ctx, text, x, y) {
+    this.ctx = ctx;
+    this.text = text;
+    this.x = x;
+    this.y = y;
+  }
+
+  fill() {
+    // this.ctx.font = "50px serif";
+    this.ctx.fillText(this.text, this.x, this.y);
+  }
+
+  stroke() {
+    // this.ctx.font = "50px serif";
+    this.ctx.strokeText(this.text, this.x, this.y);
+  }
+}
+
+function main() {
+  const canvas = document.getElementById("canvas");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+    const clock = new Clock(ctx, 300, 100, 99);
+    const rectangle1 = new Rectangle(ctx, 10, 10, 50, 50, "#ff0000");
+    const rectangle2 = new Rectangle(ctx, 30, 30, 50, 50, "rgba(0,0,255,0.5)");
+    const rectangle3 = new Rectangle(ctx, 100, 10, 50, 50, "#ff0000");
+    const rectangle4 = new Rectangle(ctx, 120, 30, 50, 50, "rgba(0,0,255,0.5)");
+
+    handleResize(canvas);
+    document.addEventListener("resize", () => handleResize(canvas));
+
+    clock.draw();
+    clock.drawHands();
+    clock.drawNumbers();
+
+    rectangle1.draw();
+    rectangle2.draw();
+    rectangle3.drawOutline();
+    rectangle4.drawOutline();
+
+    ctx.font = "50px serif";
+    ctx.fillStyle = 'red';
+    const helloText = new Text(ctx, "Hello world", 600, 40);
+    helloText.fill();
+
+    const helloText2 = new Text(ctx, "Hello world", 600, 90);
+    helloText2.stroke();
+  }
+}
+
+main(); 
+
+function handleEvent(element, callback) {
+  window.addEventListener("resize", () => callback(element));
+}
+
+function handleResize(canvas) {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+</script>
+
+</html>

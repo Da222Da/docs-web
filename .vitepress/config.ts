@@ -34,36 +34,35 @@ export default defineConfig({
 						text: '基础知识',
 						items: [
 							{
-								text: "JavaScript: 编程语言",
+								text: "网页基础",
 								items: [
 									{
-										text: "语言标准",
+										text: "JavaScript: 网页逻辑",
 										items: [
+											{
+												text: "ECMAScript: JS 标准",
+												// link: "/demo/ts/",
+											},
 											{
 												text: "TypeScript: JS 超集",
 												link: "/demo/ts/",
 											},
-										]
-									},
-									{
-										text: "程序设计",
-										items: [
 											{
-												text: "OOP: 面向对象编程范式",
+												text: "JS 面向对象编程范式",
 												link: "/demo/ts-oop/",
 											},
 											{
-												text: "DP: 设计模式",
+												text: "JS 设计模式",
 												link: "/demo/design-patterns/",
 											},
-										]
+										],
 									},
-								],
+								]
 							},
 						]
 					},
 					{
-						text: "用户界面 UI",
+						text: "客户端 Client",
 						items: [
 							{
 								text: "Component 组件化",
@@ -78,6 +77,10 @@ export default defineConfig({
 								text: "数据可视化",
 								link: "/src/web-data-visualization.md",
 								items: [
+									{
+										text: "Canvas: 绘制 2D 图形",
+										link: "/demo/canvas/",
+									},
 									{
 										text: "G6：图可视化引擎",
 										link: "/demo/antv-g6/",

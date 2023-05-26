@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas Animation</title>
+	<style>
+		canvas {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="400" height="400"></canvas>
+	<script>
+		const canvas = document.getElementById('canvas');
+		const ctx = canvas.getContext('2d');
+
+		let x = 0;
+		let y = 200;
+		let radius = 50;
+
+		function drawCircle() {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.beginPath();
+			ctx.arc(x, y, radius, 0, 2 * Math.PI);
+			ctx.fill();
+			x += 5;
+			if (x > canvas.width + radius) {
+				x = -radius;
+			}
+            //  浏览器的重绘机制是指浏览器如何更新屏幕上的图像。当浏览器需要更新屏幕上的图像时，它会执行以下步骤：
+
+            // 1. 浏览器将所有需要更新的元素标记为“脏”（dirty）。
+            // 2. 浏览器计算出哪些元素需要重新绘制，以及它们的顺序。
+            // 3. 浏览器将需要重新绘制的元素按照顺序绘制到屏幕上。
+            // 4. 浏览器重复执行上述步骤，直到所有需要更新的元素都被绘制到屏幕上。
+
+            // 在这个过程中，浏览器会尽可能地优化绘制过程，以提高性能和响应速度。例如，浏览器可能会将多个需要更新的元素合并成一个，以减少绘制次数。此外，浏览器还会使用硬件加速等技术来加快绘制速度。
+
+            // requestAnimationFrame 是一个 JavaScript 方法，用于在下一次浏览器重绘之前调用指定的函数来更新动画。它接受一个回调函数作为参数，该函数将在下一次重绘时执行。这种方法比使用 setTimeout 或 setInterval 更有效，因为它会自动与浏览器的重绘机制同步，从而避免了不必要的绘制和卡顿。在 Canvas 动画中，通常使用 requestAnimationFrame 来更新画布并实现平滑的动画效果。在提供的代码中，requestAnimationFrame 用于调用 drawCircle 函数，从而实现了画布上的圆形动画 
+			requestAnimationFrame(drawCircle);
+		}
+
+		drawCircle();
+	</script>
+</body>
+</html>

@@ -47,10 +47,10 @@ export default defineConfig({
 												text: "TypeScript: JS 超集",
 												link: "/demo/ts/",
 											},
-											{
-												text: "JS 面向对象编程范式",
-												link: "/demo/ts-oop/",
-											},
+											// {
+											// 	text: "JS 面向对象编程范式",
+											// 	link: "/demo/ts-oop/",
+											// },
 											{
 												text: "JS 设计模式",
 												link: "/demo/design-patterns/",
@@ -96,7 +96,8 @@ export default defineConfig({
 								text: "NodeJS: JS 运行时环境",
 								link: "/demo/nodejs/",
 								items: [
-									{ text: "pnpm: 包管理工具", link: "/demo/pnpm/" }
+									{ text: "pnpm: 包管理工具", link: "/demo/pnpm/" },
+									{ text: "开发一个 CLI 工具", link: "/demo/nodejs-cli/" },
 								]
 							},
 						]

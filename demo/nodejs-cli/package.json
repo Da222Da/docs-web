@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "log": "node npmlog.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "color": "^4.2.3",
+    "colors": "^1.4.0",
+    "npmlog": "^7.0.1"
+  }
+}

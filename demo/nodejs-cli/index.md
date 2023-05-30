@@ -51,9 +51,67 @@ npm list --depth=0 -g
 
 ### 本地调试
 
-### 技术选型
-
 ### 需求方案
+
+--- 
+
+#### 如何做日志记录？
+
+> 需求：如何在 CLI 应用中做日志记录？
+
+在 Node.js 中，您可以使用内置的  console  模块来进行简单的日志记录，也可以使用第三方模块来进行更有趣的日志记录，例如`npmlog，支持级别和颜色，增强交互性`。 
+
+For Example:
+
+::: code-group
+
+```js [1. npmlog 基本使用]
+var log = require('npmlog')
+
+// additional stuff ---------------------------+
+// message ----------+                         |
+// prefix ----+      |                         |
+// level -+   |      |                         |
+//        v   v      v                         v
+    log.info('fyi', 'I have a kitty cat: %j', myKittyCat)
+```
+
+
+```js [2. 定制 npmlog]
+const log = require('npmlog');
+
+// 默认 level 等级
+log.level = process.env.LOG_LEVEL ? process.env.LOG_LEVEL : 'info';
+
+// 修改前缀
+log.heading = "Web CLI";
+log.headingStyle = { fg: 'red', bg: 'white' };
+
+// 添加自定义 level
+log.addLevel('success', 2000, { fg: 'green', bold: true });
+
+module.exports = log;
+```
+:::
+
+::: danger 补充说明： 如果你觉得无法灵活地控制输出文字颜色的话，可以使用 `colors` 模块。
+
+For Example:
+
+```js
+const npmlog = require('npmlog');
+const colors = require('colors');
+
+colors.setTheme({
+    error: 'red',
+    warn: 'yellow',
+    info: 'green',
+    debug: 'blue'
+});
+
+npmlog.info('prefix', 'hello world', 'suffix'.error);
+```
+:::
 
 ### 发布上线
 

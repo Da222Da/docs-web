@@ -4,12 +4,15 @@ outline: deep
 
 # React.js
 
-## 1. React.js 是什么？
+## #Started 开始
 
-> React.js 的本质就是将 State 状态变成视图 Views。
+### React.js 是什么？
 
+在2013年 React 发布时，主流的UI开发方式仍然是基于浏览器DOM API，精确控制DOM节点的创建、修改和删除。为了保证UI的一致性，我们需要非常小心地处理因为UI更改中的各种数据的更改。
 
-React.js 是一个使用 `Components 组件` 来构建用户界面的 JavaScript 库。开发者选择使用 React 的原因有以下几点：
+React 通过 JSX 语法，用声明性的方式来描述数据和 UI 之间的关系，当数据发生变化时，UI也会自动发生变化。这样，我们将不再需要关心更改了哪些细节。很容易就能保证 UI 的一致性。
+
+所以说，React.js 就是一个构建用户界面的 JavaScript 库。开发者选择使用 React 的原因有以下几点：
 
 
 | 优点       | 描述                                                                                                                                                         |
@@ -20,10 +23,10 @@ React.js 是一个使用 `Components 组件` 来构建用户界面的 JavaScript
 | 庞大的社区 | React 拥有庞大而活跃的开发者社区，这意味着有大量的资源可用于学习和故障排除。还有许多第三方库和工具可用于 React，这可以帮助开发者更加高效。                   |
 
 
-总的来说，React 可以是构建复杂、动态用户界面的绝佳选择。然而，需要注意的是，React 只是开发者工具箱中的一个工具，它可能不是每个项目的最佳选择。与任何技术一样，评估其优缺点并选择适合工作的正确工具非常重要。
+总的来说，React 可以是构建复杂、动态用户界面的绝佳选择。然而，需要注意的是，React 只是开发者工具箱中的一个工具，它可能不是每个项目的最佳选择。与任何技术一样，评估其优缺点并选择适合工作的正确工具非常重要。[想要了解更多细节，请移步 React 官方文档](https://react.dev/learn)
 
 
-## 2. 如何学习 React.js
+### 如何学习 React.js ?
 
 要学习 React，首先需要掌握 JavaScript 的基础知识和基本的前端技术，例如 HTML 和 CSS。接下来可以通过下面的步骤学习 React：
 
@@ -39,24 +42,15 @@ React.js 是一个使用 `Components 组件` 来构建用户界面的 JavaScript
 
 
 
-## 附录A: Tips 小贴士
+## #Basic Concept 基础概念
 
-### 基础知识
+> 基本概念：一个主题或领域中最基本、最核心的思想或原理。
+>
+> React 的核心内容就是：JSX 模板语法、Component 组件、以及 State 状态。
+>
+> React 的核心机制就是: 能够在数据发生变化的时候重新渲染 UI.
 
---- 
-
-#### 模板语法 JSX 
-
-
-::: tip 特别说明：JSX 语法是什么？
-
-JSX 是 JS 的语法扩展，是为了将 HTML 网页内容和 JS 网页逻辑都能写到 .js 文件中，核心要点:
-
-1. 如何在 JSX 模板中写 `JS 变量、表达式等脚本逻辑部分`？
-2. 如何在 JSX 模板中写 `Style 样式`？
-3. 如何在 JSX 模板中绑定`事件处理器 event handler`?
-
-:::
+### 模板语法 JSX 
 
 ::: danger 注意！
 
@@ -67,6 +61,10 @@ JSX 是 JS 的语法扩展，是为了将 HTML 网页内容和 JS 网页逻辑�
 JSX 是 JavaScript 的语法扩展，允许您在 JavaScript 文件中编写类似 HTML 的代码。它通常用于 React.js 中定义组件的结构和内容。在代码执行之前，JSX 代码由转换器（如 Babel ）编译为常规 JavaScript 代码。
 
 需要注意的是，虽然 JSX 看起来像 HTML，但它实际上不是 HTML。它是 JavaScript 的语法扩展，允许您在 JavaScript 文件中编写类似 HTML 的代码。这意味着您可以在 JSX 代码中使用 JavaScript 表达式和变量，例如：
+
+所以说，JSX 只是 JS 的语法扩展，其设计目的是为了将 HTML 网页内容和 JS 网页逻辑都能写到 .js 文件中。
+
+For Example:
 
 ::: code-group
 
@@ -111,86 +109,62 @@ const JSXTemplate = <>
 
 
 
-#### 组件 Component
+### 组件 Component
 
-> React.js 里面的 `component` 组件，本质上是一个返回 `JSX` 的 `function` 函数。
+组件是 UI(用户界面)的一部分，它有自己的逻辑和外观。组件可以小到一个按钮，也可以大到整个页面。
 
+在 React 中，所有的 UI 都是通过组件描述和组织的。你可以认为，React 中的所有元素都是组件，具体可以分为以下两种：
+1. 内置组件：内置组件是映射到HTML节点的组件，比如div、input、table等，作为一种约定，它们都是小写字母。
+2. 自定义组件：自定义组件实际上是创建组件，例如使用时必须以大写字母开头 PageBody。
 
-组件是 UI(用户界面)的一部分，它有自己的逻辑和外观。组件可以小到一个按钮，也可以大到整个页面。例如
+和 DOM 节点类似，React 组件是以**树状结构**的形式组织在一起的，所以，一个 React 应用通常会有一个根组件 App。
 
-::: code-group 
+For Example:
 
-```js [组件定义 page.js]
-import React from "react";
+::: code-group
 
-// 网页组件
-function Page() {
-	const listData = [
-		{ id: 1, text: 'item 1', isShown: true },
-		{ id: 2, text: 'item 2', isShown: false },
-		{ id: 3, text: 'item 3', isShown: true },
-	]
-	return <>
-		<h3>Page Title</h3>
-		<PageBody content="Page Content" listData={listData} />
-		<footer>Page Footer</footer>
-	</>
-}
-
-// 子组件
-// 组件嵌套
-// 组件条件渲染: 与 JS 差不多
-// 组件列表渲染: 与 JS Array 差不多，不过需要注意 key，因为组件可能会发生变化，需要用到唯一标识。
-// 组件通信：将 markup attribute 当做形参传给 JSX Function
-function PageBody(props) {
-	const { content, listData } = props;
-	return <main>
-		<h3>{content}</h3>
-		<ul>
-			{listData.map(item => item.isShown && <li key={item.id}>{item.text}</li>)}
-		</ul>
-	</main>
-}
-
-export default Page;
-
-```
-
-```js [入口文件 main.js]
+```jsx [示例1. 组件声明]
 import React from "react";
 import { createRoot } from "react-dom/client";
 import Page from "./pages";
 
 const root = createRoot(document.getElementById("app"));
-root.render(<Page />);
+root.render(<App />);
 
+// 声明根组件 App
+function App() {
+	return <>
+		<h3>Page Title</h3>
+		<main>Page Content</main>
+		<footer>Page Footer</footer>
+	</>
+}
 ```
 :::
 
-##### 组件渲染(条件 & 列表)
-##### 组件嵌套
-##### 组件通信
 
-#### 状态 State
+<!-- ##### 组件渲染(条件 & 列表)
+##### 组件嵌套
+##### 组件通信 -->
+
+### 状态 State
 
 ::: tip 特别说明：什么是状态？
 
-状态，就是声明`动态组件 Dynamic Component`的关键。
+React 机制的核心是能够在数据有变化的时候自动渲染 UI，那些必然会有一个让我们保存状态的机制，这个机制就是 State。
 
 组件经常需要在交互过程中改变屏幕上的内容。例如，在表单中输入应该会更新输入字段，在图像转盘上单击“next”应该会更改显示的图像，单击“buy”应该会将产品放入购物车。组件需要“记住”一些东西:当前输入值、当前图像、购物车。在React中，这种类似于组件的内存，被称为状态。
 
-所以说，状态就是会被 React 记住的值。`State Is A Component's Memory`。核心内容：
+所以说，State，就是声明`动态组件 Dynamic Component`的关键。状态就是会被 React 记住的值。`State Is A Component's Memory`。
 
-1. 如何添加一个状态变量 `adding a state variable`？
-   1. `useState Hook` 生命周期函数详情？
-2. 如何更新一个状态变量`updating a state variable`？
-   1. 原始值`示例`
-   2. object 用新对象替换旧对象`示例`
-   3. array `示例`
 :::
 
 ##### 如何添加一个状态变量？
+   1. `useState Hook` 生命周期函数详情？
 ##### 如何更新一个状态变量？
+	 1. 原始值`示例`
+   2. object 用新对象替换旧对象`示例`
+   3. array `示例`
 
 
 

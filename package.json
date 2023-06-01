@@ -8,6 +8,7 @@
 		"vitepress": "^1.0.0-alpha.75"
 	},
 	"scripts": {
+		"docs": "pnpm docs:dev",
 		"docs:dev": "vitepress dev",
 		"docs:build": "vitepress build",
 		"docs:preview": "vitepress preview",

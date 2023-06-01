@@ -34,38 +34,36 @@ export default defineConfig({
 						text: '基础知识',
 						items: [
 							{
-								text: "网页基础",
+								text: '网页绘制',
 								items: [
+									{ text: "HTML 文本标记" },
 									{
-										text: "JavaScript: 网页逻辑",
+										text: "Canvas: 绘制 2D 图形",
+										link: "/demo/canvas/",
 										items: [
 											{
-												text: "ECMAScript: JS 标准",
-												// link: "/demo/ts/",
-											},
-											{
-												text: "TypeScript: JS 超集",
-												link: "/demo/ts/",
-											},
-											// {
-											// 	text: "JS 面向对象编程范式",
-											// 	link: "/demo/ts-oop/",
-											// },
-											{
-												text: "JS 设计模式",
-												link: "/demo/design-patterns/",
+												text: "G6：图可视化引擎",
+												link: "/demo/antv-g6/",
 											},
 										],
 									},
 								]
 							},
-						]
-					},
-					{
-						text: "客户端 Client",
-						items: [
 							{
-								text: "Component 组件化",
+								text: "网页逻辑",
+								items: [
+									{
+										text: "ECMAScript: JS 标准",
+										// link: "/demo/ts/",
+									},
+									{
+										text: "JS 设计模式",
+										link: "/demo/design-patterns/",
+									},
+								]
+							},
+							{
+								text: "DOM 文档对象模型",
 								items: [
 									{
 										text: "React: 组件化解决方案",
@@ -73,19 +71,13 @@ export default defineConfig({
 									},
 								],
 							},
+						]
+					},
+					{
+						text: "客户端 Client",
+						items: [
 							{
-								text: "数据可视化",
-								link: "/src/web-data-visualization.md",
-								items: [
-									{
-										text: "Canvas: 绘制 2D 图形",
-										link: "/demo/canvas/",
-									},
-									{
-										text: "G6：图可视化引擎",
-										link: "/demo/antv-g6/",
-									},
-								],
+								text: "Browser 浏览器",
 							},
 						],
 					},

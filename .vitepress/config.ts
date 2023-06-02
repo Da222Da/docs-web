@@ -3,7 +3,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
 	base: "/docs-web/",
 	title: "互联网 Web",
-	description: "Understand the Internet",
+	description: "web docs: 笔记！就是找到节点，记到纸上，然后在大脑中忘记它。",
 	themeConfig: {
 		nav: [
 			{ text: "Home", link: "/" },
@@ -34,30 +34,30 @@ export default defineConfig({
 						text: '基础知识',
 						items: [
 							{
-								text: '网页绘制',
+								text: 'View: 网页绘制',
 								items: [
-									{ text: "HTML 文本标记" },
+									{ text: "HTML: 文本标记" },
 									{
 										text: "Canvas: 绘制 2D 图形",
 										link: "/demo/canvas/",
-										items: [
-											{
-												text: "G6：图可视化引擎",
-												link: "/demo/antv-g6/",
-											},
-										],
+										// items: [
+										// 	{
+										// 		text: "G6：图可视化引擎",
+										// 		link: "/demo/antv-g6/",
+										// 	},
+										// ],
 									},
 								]
 							},
 							{
-								text: "网页逻辑",
+								text: "JavaScript: 网页逻辑",
 								items: [
 									{
 										text: "ECMAScript: JS 标准",
 										// link: "/demo/ts/",
 									},
 									{
-										text: "JS 设计模式",
+										text: "JavaScript 设计模式",
 										link: "/demo/design-patterns/",
 									},
 								]
@@ -89,9 +89,9 @@ export default defineConfig({
 								link: "/demo/nodejs/",
 								items: [
 									{ text: "pnpm: 包管理工具", link: "/demo/pnpm/" },
-									{ text: "开发一个 CLI 工具", link: "/demo/nodejs-cli/" },
 								]
 							},
+							{ text: "开发一个 CLI 工具", link: "/demo/nodejs-cli/" },
 						]
 					},
 					{

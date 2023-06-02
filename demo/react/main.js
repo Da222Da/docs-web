@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./src/";
-import "./assets/style/index.css";
+// import "./assets/style/index.css";
 
 
 // Render your React component instead

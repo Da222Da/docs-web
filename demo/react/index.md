@@ -311,7 +311,6 @@ export function Count() {
 	2. 函数签名`useCallback(callback, dependencies?)`
     	- 2-1. callback，被执行回调函数。
     	- 2-2. dependencies，依赖项数组（可选参数）。只有当某个依赖变量发生变化时，才会重新申明 callback 回调函数。
-	3. 意义：提高系统性能。
 
 For Example:
 
@@ -336,4 +335,102 @@ import React, { useState, useCallback } from 'react';
 
 ::: danger 为什么要使用 useCallback 呢?
 假设上述示例中，没有使用 useCallback 来缓存 handleClick 的话。无论 count 状态是否改变，只要组件重新发生渲染。那么，handleClick 函数会被重新定义，与之相关的 ChildComponent 组件也会被重新渲染，影响系统性能。  
+:::
+
+##### useMemo 
+
+::: danger 特别提醒
+useMemo 和 useCallback 用法基本类似。它们只做了同一件事情，那就是建立了一个绑定某个结果到依赖数据的关系，只有当依赖变了，这个结果才需要被重新得到。不过，useMemo 的作用范围不止于函数而已。
+
+这样做的好处，如下：
+- 好处1：避免重复计算。
+- 好处2：避免子组件重复渲染。
+:::
+
+- useMemo 缓存计算结果
+	1. 定义：一个用于计算结果的 React 钩子函数。
+	2. 函数签名`useMemo(callback, dependencies?)`
+    	- 2-1. callback，被执行回调函数。
+    	- 2-2. dependencies，依赖项数组（可选参数）。只有当某个依赖变量发生变化时，才会重新申明 callback 回调函数。
+
+For Example:
+
+```js
+import React, { useState, useCallback, useMemo } from "react";
+
+export function Count() {
+	const [count, setCount] = useState(0);
+
+	// 缓存计算结果 => 该结果是一个函数
+	// const handleCount = useCallback(() => setCount(count + 1), [count]);
+	const handleCount = useMemo(() => {
+		return () => setCount(count + 1);
+	}, [count]);
+
+	// 缓存计算结果 => 该结果是一个字符串
+	const countMsg = useMemo(() => {
+		return "clicked count: " + count;
+	}, [count]);
+
+	return (
+		<div>
+			<p>You clicked {count} times</p>
+			<button onClick={handleCount}>Click me</button>
+			<p>{countMsg}</p>
+		</div>
+	);
+}
+
+```
+
+##### useRef 
+
+- useRef 在多次渲染之间共享数据 && 保存某个 DOM 节点的引用
+	1. 定义：我们可以将 useRef 看作是在函数组件之外创建一个容器空间`object`，并且在这个容器空间上，有一个唯一的属性值 current 可以被读取和设置，从而在函数组件的多次渲染之间共享这个值。
+	2. 函数签名`useRef(initialValue)`
+
+For Example:
+::: code-group
+```js [示例1：多次渲染之间共享数据]
+import React, { useState, useRef, useCallback } from 'react';
+
+export function MyComponent() {
+	const [time, setTime] = useState(0);
+	const timer = useRef(null);
+
+	const handleStart = useCallback(() => {
+		timer.current = window.setInterval(() => {
+			setTime((time => time + 1), 100)
+		})
+	}, []);
+
+	const handlePause = useCallback(() => {
+		window.clearInterval(timer.current);
+		timer.current = null;
+	}, []);
+
+	return (<>
+		{time} seconds
+		<br />
+		<button onClick={handleStart}>Start</button>
+		<button onClick={handlePause}>Pause</button>
+	</>)
+}
+```
+
+```js [示例2：保存某个 DOM 节点的引用]
+import React, { useRef } from 'react';
+ function MyComponent() {
+  const inputRef = useRef(null);
+   const handleClick = () => {
+    inputRef.current.focus();
+  };
+   return (
+    <div>
+      <input type="text" ref={inputRef} />
+      <button onClick={handleClick}>Focus Input</button>
+    </div>
+  );
+}
+```
 :::

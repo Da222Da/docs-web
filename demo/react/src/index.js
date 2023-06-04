@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Count } from "./components/"
+import { MyComponent } from "./components/"
 
 function App() {
 	return <>
-		<Count />
+		<MyComponent />
 	</>
 }
 

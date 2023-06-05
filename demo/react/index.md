@@ -42,7 +42,7 @@ React 通过 JSX 语法，用声明性的方式来描述数据和 UI 之间的�
 
 
 
-## #Basic Concept 基础概念
+## #Concept 概念
 
 > 基本概念：一个主题或领域中最基本、最核心的思想或原理。
 >
@@ -304,6 +304,59 @@ export function Count() {
 
 :::
 
+
+##### useRef 
+
+- useRef 在多次渲染之间共享数据 && 保存某个 DOM 节点的引用
+	1. 定义：我们可以将 useRef 看作是在函数组件之外创建一个容器空间`object`，并且在这个容器空间上，有一个唯一的属性值 current 可以被读取和设置，从而在函数组件的多次渲染之间共享这个值。
+	2. 函数签名`useRef(initialValue)`
+
+For Example:
+::: code-group
+```js [示例1：多次渲染之间共享数据]
+import React, { useState, useRef, useCallback } from 'react';
+
+export function MyComponent() {
+	const [time, setTime] = useState(0);
+	const timer = useRef(null);
+
+	const handleStart = useCallback(() => {
+		timer.current = window.setInterval(() => {
+			setTime((time => time + 1), 100)
+		})
+	}, []);
+
+	const handlePause = useCallback(() => {
+		window.clearInterval(timer.current);
+		timer.current = null;
+	}, []);
+
+	return (<>
+		{time} seconds
+		<br />
+		<button onClick={handleStart}>Start</button>
+		<button onClick={handlePause}>Pause</button>
+	</>)
+}
+```
+
+```js [示例2：保存某个 DOM 节点的引用]
+import React, { useRef } from 'react';
+ function MyComponent() {
+  const inputRef = useRef(null);
+   const handleClick = () => {
+    inputRef.current.focus();
+  };
+   return (
+    <div>
+      <input type="text" ref={inputRef} />
+      <button onClick={handleClick}>Focus Input</button>
+    </div>
+  );
+}
+```
+:::
+
 ##### useCallback
 
 - useCallback 缓存回调函数
@@ -383,54 +436,149 @@ export function Count() {
 
 ```
 
-##### useRef 
 
-- useRef 在多次渲染之间共享数据 && 保存某个 DOM 节点的引用
-	1. 定义：我们可以将 useRef 看作是在函数组件之外创建一个容器空间`object`，并且在这个容器空间上，有一个唯一的属性值 current 可以被读取和设置，从而在函数组件的多次渲染之间共享这个值。
-	2. 函数签名`useRef(initialValue)`
+##### 自定义 hooks
 
-For Example:
+::: info 特别说明：什么是自定义 Hooks？
+
+自定义 Hooks，就是在形式上**声明一个名字以 use 开头的函数**`例如 useCounter`。
+
+值得注意的是，自定义 Hooks 函数与普通函数唯一的区别就在于**函数中是否使用了其他 Hooks 函数**。
+
+之所以，将逻辑拆成独立的 Hooks，就是为了实现逻辑复用和代码解耦，以便于后期的维护工作。
+
+:::
+
+
+接下来，我们会以计数器 Counter 为例，来看看如何自定义 Hooks 抽取业务逻辑:
+
 ::: code-group
-```js [示例1：多次渲染之间共享数据]
-import React, { useState, useRef, useCallback } from 'react';
+
+```js [示例1：不使用自定义 Hooks]
+import React, { useCallback, useState } from 'react';
 
 export function MyComponent() {
-	const [time, setTime] = useState(0);
-	const timer = useRef(null);
-
-	const handleStart = useCallback(() => {
-		timer.current = window.setInterval(() => {
-			setTime((time => time + 1), 100)
-		})
-	}, []);
-
-	const handlePause = useCallback(() => {
-		window.clearInterval(timer.current);
-		timer.current = null;
-	}, []);
+	const [count, setCount] = useState(0);
+	const handleIncrement = useCallback(() => {
+		setCount(count + 1);
+	}, [count]);
+	const handleDecrement = useCallback(() => {
+		setCount(count - 1);
+	}, [count]);
+	const reset = useCallback(() => {
+		setCount(0);
+	}, [count]);
 
 	return (<>
-		{time} seconds
-		<br />
-		<button onClick={handleStart}>Start</button>
-		<button onClick={handlePause}>Pause</button>
-	</>)
+		<p>{count}</p>
+		<div>
+			<button onClick={handleIncrement}>+</button>
+			<button onClick={handleDecrement}>-</button>
+			<button onClick={reset}>reset</button>
+		</div>
+	</>);
 }
+
 ```
 
-```js [示例2：保存某个 DOM 节点的引用]
-import React, { useRef } from 'react';
- function MyComponent() {
-  const inputRef = useRef(null);
-   const handleClick = () => {
-    inputRef.current.focus();
-  };
-   return (
-    <div>
-      <input type="text" ref={inputRef} />
-      <button onClick={handleClick}>Focus Input</button>
-    </div>
+```js [示例2：使用自定义 Hooks]
+import React, { useCallback, useState } from 'react';
+
+// 自定义 Hooks useCounter
+const useCounter = () => {
+	const [count, setCount] = useState(0);
+
+	const handleIncrement = useCallback(() => {
+		setCount(count + 1);
+	}, [count]);
+
+	const handleDecrement = useCallback(() => {
+		setCount(count - 1);
+	}, [count]);
+
+	const reset = useCallback(() => {
+		setCount(0);
+	}, [count]);
+
+	return { count, reset, handleIncrement, handleDecrement }
+}
+
+export function MyComponent() {
+	const { count, handleDecrement, handleIncrement, reset } = useCounter();
+
+	return (<>
+		<p>{count}</p>
+		<div>
+			<button onClick={handleIncrement}>+</button>
+			<button onClick={handleDecrement}>-</button>
+			<button onClick={reset}>reset</button>
+		</div>
+	</>);
+}
+
+```
+
+:::
+
+ 
+## #Scene 应用场景 
+
+### 路由管理 Router
+
+所谓的“路由管理”，就是根据 URL 的变化对页面进行切换。
+
+实现“路由管理”的核心逻辑，就是根据 URL 这个状态，来决定主内容区域显示什么内容。但是在实际项目中，还有很多情况需要考虑，例如路由嵌套、URL 的模式匹配等等。所以说，实现一个完整的路由框架，工作量是很大的。所以，我个人推荐直接使用社区开源的路由管理方案 `React Router`。[阅读更多 React Router，请移步官网](https://reactrouter.com/en/main)
+
+
+::: danger 特别说明：什么是 URL?
+URL，全称是"统一资源定位符"`Uniform Resource Locator`。
+
+现在的前端应用，不仅要求定位到某个页面，还要能定位到一些状态，比如当前 tab 页是什么？页面表格是第几页？等等。
+:::
+
+::: details 快速上手 React Router 的具体步骤
+
+# Steps
+- step 1: 安装 React Router`npm i react-router-dom`
+- step 2: 从 reacr-router-dom 中导入必要的组件，例如`BrowserRouter、Route、Link`
+- step 3: 使用 `BrowserRouter 组价` 包裹的应用组件，用来启用应用中的路由功能。
+- step 4: 使用 `Route 组件` 定义路由。你可以为每条路由指定跳转路径和组件。
+- step 5: 使用 `Link 组件` 创建用于跳转的链接。
+
+For Example:
+
+```js
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+ function App() {
+  return (
+    <BrowserRouter>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+        </ul>
+      </nav>
+      <Route exact path="/" component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/contact" component={Contact} />
+    </BrowserRouter>
   );
+}
+function Home() {
+  return <h1>Home Page</h1>;
+}
+function About() {
+  return <h1>About Page</h1>;
+}
+function Contact() {
+  return <h1>Contact Page</h1>;
 }
 ```
 :::

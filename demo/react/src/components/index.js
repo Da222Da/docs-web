@@ -1,24 +1,25 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React from 'react';
+import { useCounter } from "./../hooks/counter"
 
 export function MyComponent() {
-	const [time, setTime] = useState(0);
-	const timer = useRef(null);
-
-	const handleStart = useCallback(() => {
-		timer.current = window.setInterval(() => {
-			setTime((time => time + 1), 100)
-		})
-	}, []);
-
-	const handlePause = useCallback(() => {
-		window.clearInterval(timer.current);
-		timer.current = null;
-	}, []);
+	// const [count, setCount] = useState(0);
+	// const handleIncrement = useCallback(() => {
+	// 	setCount(count + 1);
+	// }, [count]);
+	// const handleDecrement = useCallback(() => {
+	// 	setCount(count - 1);
+	// }, [count]);
+	// const reset = useCallback(() => {
+	// 	setCount(0);
+	// }, [count]);
+	const { count, handleDecrement, handleIncrement, reset } = useCounter();
 
 	return (<>
-		{time} seconds
-		<br />
-		<button onClick={handleStart}>Start</button>
-		<button onClick={handlePause}>Pause</button>
-	</>)
+		<p>{count}</p>
+		<div>
+			<button onClick={handleIncrement}>+</button>
+			<button onClick={handleDecrement}>-</button>
+			<button onClick={reset}>reset</button>
+		</div>
+	</>);
 }

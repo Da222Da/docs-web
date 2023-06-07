@@ -521,7 +521,86 @@ export function MyComponent() {
 :::
 
  
-## #Scene 应用场景 
+## #Demo 应用场景 
+
+### 组件通信 Called
+
+在 React 中，组件通信的场景有很多种，以下是一些常见的场景：
+
+1. 父子组件通信：父组件通过 props 将数据传递给子组件，子组件通过回调函数将数据传递回父组件。
+2. 兄弟组件通信：如果两个兄弟组件没有共同的父组件，可以通过将它们的共享状态提升到它们的最近公共祖先，然后将状态传递给它们。
+3. 跨层级组件通信：如果两个组件处于不同的层级，可以使用 React 的 Context API 来共享状态。
+4. 非父子组件通信：可以使用全局状态管理库（例如 Redux）或事件总线（例如 EventEmitter）来实现非父子组件之间的通信。
+
+以上是一些常见的场景，但并不是全部。在实际开发中，可能还会遇到其他场景，需要根据具体情况选择合适的通信方式。
+
+::: details 示例1：父组件向子组件通信 —— props
+
+```jsx
+import React, { useState } from 'react';
+
+// 父组件
+function ParentComponent() {
+  const [value, setValue] = useState(true);
+	const handleClick = () => {
+		setValue(!value);
+	}
+
+	return <>
+		<h1>Toggle Button</h1>
+		<ChildComponent value={value} handleClick={handleClick} />
+	</>
+}
+
+// 子组件
+function ChildComponent(props) {
+	const { value, handleClick } = props;
+
+	return <>
+		<button onClick={handleClick}>
+			<span>{value ? 'On' : 'Off'}</span>
+		</button>
+	</>
+}
+ 
+```
+
+::: 
+
+::: details 示例2：子组件向父组件通信 —— 自定义事件
+
+```jsx
+import React, { useState } from 'react';
+
+// 父组件
+function ParentComponent() {
+ const [value, setValue] = useState(true);
+
+	return <>
+		<h1>Toggle Button</h1>
+
+		{/* 自定义事件 onButtonChange  */}
+		<ToggleButton value={value} onButtonChange={(value) => { setValue(value); }} />
+	</>
+}
+
+// 子组件
+function ChildComponent({ value, onButtonChange }) {
+	const handleClick = () => {
+		onButtonChange(!value);
+	}
+
+	return <>
+		<button onClick={handleClick}>
+			<span>{value ? 'On' : 'Off'}</span>
+		</button>
+	</>
+}
+ 
+```
+
+:::
+
 
 ### 路由管理 Router
 
@@ -548,26 +627,28 @@ URL，全称是"统一资源定位符"`Uniform Resource Locator`。
 For Example:
 
 ```js
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
  function App() {
   return (
+		<nav>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
+      </ul>
+    </nav>
     <BrowserRouter>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-        </ul>
-      </nav>
-      <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/contact" component={Contact} />
+  		<Routes>
+  				<Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
+  		</Routes>
     </BrowserRouter>
   );
 }

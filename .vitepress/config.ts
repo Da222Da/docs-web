@@ -2,8 +2,8 @@ import { defineConfig } from "vitepress";
 
 export default defineConfig({
 	base: "/docs-web/",
-	title: "互联网 Web",
-	description: "web docs: 笔记！就是找到节点，记到纸上，然后在大脑中忘记它。",
+	title: "Web 互联网速记",
+	description: "速记，采用‘盲人摸象’的方式，以遇到的真实场景为切入点，快速地熟悉其用法。",
 	themeConfig: {
 		nav: [
 			{ text: "Home", link: "/" },

@@ -91,27 +91,28 @@ export default defineConfig({
 									{ text: "pnpm: 包管理工具", link: "/demo/pnpm/" },
 								]
 							},
-							{ text: "开发一个 CLI 工具", link: "/demo/nodejs-cli/" },
+							
 						]
 					},
 					{
 						text: "Web 项目工程",
 						link: "/src/web-engineering.md",
 						items: [
+							// {
+							// 	text: "开发规范 Standard",
+							// 	link: "/src/web-engineering-standard.md",
+							// },
+							{ text: "开发一个 CLI 工具", link: "/demo/nodejs-cli/" },
 							{
-								text: "开发规范 Standard",
-								link: "/src/web-engineering-standard.md",
+								text: "Jest：JS 单元测试框架",
+								link: "/demo/test-jest/",
 							},
-							{
-								text: "软件测试 Testing",
-								link: "/src/web-engineering-testing.md",
-								items: [
-									{
-										text: "Jest：JS 单元测试框架",
-										link: "/demo/test-jest/",
-									},
-								],
-							},
+							// {
+							// 	text: "软件测试 Testing",
+							// 	link: "/src/web-engineering-testing.md",
+							// 	items: [
+							// 	],
+							// },
 						],
 					},
 				],

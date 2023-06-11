@@ -1,0 +1,1 @@
+import{_ as e,c as a,o as t,O as i}from"./chunks/framework.dd35b821.js";const h=JSON.parse('{"title":"Web 互联网","description":"","frontmatter":{},"headers":[],"relativePath":"README.md","filePath":"README.md"}'),l={name:"README.md"},o=i("",14),b=[o];function r(c,s,_,n,p,d){return t(),a("div",null,b)}const m=e(l,[["render",r]]);export{h as __pageData,m as default};
